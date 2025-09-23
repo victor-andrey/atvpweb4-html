@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Manipulação do DOM + Contador</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .box {
+      margin: 15px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    button {
+      margin: 5px;
+      padding: 5px 10px;
+    }
+
+    #contador {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Atividade: Manipulação do DOM</h1>
+
+
+  <div class="box">
+    <h2>Mensagem</h2>
+    <input type="text" id="mensagemInput" placeholder="Digite uma mensagem...">
+    <button id="btnMostrar">Mostrar Mensagem</button>
+    <button id="btnLimpar">Limpar</button>
+    <div id="mensagemArea"></div>
+  </div>
+
+  <div class="box">
+    <h2>Contador Interativo</h2>
+    <p id="contador">0</p>
+    <button id="btnIncrementar">Incrementar</button>
+    <button id="btnDecrementar">Decrementar</button>
+    <button id="btnZerar">Zerar</button>
+  </div>
+
+  <script>
+
+    const inputMensagem = document.getElementById("mensagemInput");
+    const btnMostrar = document.getElementById("btnMostrar");
+    const btnLimpar = document.getElementById("btnLimpar");
+    const areaMensagem = document.getElementById("mensagemArea");
+
+    btnMostrar.addEventListener("click", function() {
+      const texto = inputMensagem.value; 
+      if (texto.trim() !== "") {
+
+        const p = document.createElement("p");
+        p.textContent = texto;
+        areaMensagem.appendChild(p); 
+        inputMensagem.value = ""; 
+      }
+    });
+
+    btnLimpar.addEventListener("click", function() {
+      areaMensagem.innerHTML = ""; 
+    });
+
+
+    const contadorEl = document.getElementById("contador");
+    const btnIncrementar = document.getElementById("btnIncrementar");
+    const btnDecrementar = document.getElementById("btnDecrementar");
+    const btnZerar = document.getElementById("btnZerar");
+
+    let contador = 0; 
+    function atualizarContador() {
+      contadorEl.textContent = contador;
+    }
+
+    btnIncrementar.addEventListener("click", function() {
+      contador++;
+      atualizarContador();
+    });
+
+    btnDecrementar.addEventListener("click", function() {
+      contador--;
+      atualizarContador();
+    });
+
+    btnZerar.addEventListener("click", function() {
+      contador = 0;
+      atualizarContador();
+    });
+  </script>
+</body>
+</html>
